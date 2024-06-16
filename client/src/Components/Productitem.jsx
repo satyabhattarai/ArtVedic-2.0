@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Fragment } from "react";
+import Khalti from "./Khalti/Khalti";
 import React from "react";
+import { useStateContext } from "../ContextProvider/ContextProvider";
 
 const Productitem = () => {
   const navigate = useNavigate();
@@ -14,6 +16,7 @@ const Productitem = () => {
 
   const [item, setItem] = useState([]);
   const [user_photo, set_user_photo] = useState([]);
+  const { payment, set_payment } = useStateContext();
   useEffect(() => {
     GetProductItem();
     GetReviews();
@@ -93,7 +96,10 @@ const Productitem = () => {
 
   const handle_review_data = async (e) => {
     e.preventDefault();
-    console.log(item[0].attributes.img.data.id);
+    if (!localStorage.getItem("USER_EMAIL")) {
+      alert("login first");
+      return 0;
+    }
 
     const formData = {
       reviewer_email: localStorage.getItem("USER_EMAIL"),
@@ -174,17 +180,19 @@ const Productitem = () => {
                     >
                       BID NOW
                     </button>
-                    <button
+                    <div
                       onClick={() => {
                         if (!localStorage.getItem("USER_EMAIL")) {
                           alert("login first");
                         } else {
+                          set_payment(true);
                         }
                       }}
-                      className="border block border-[#5C6B94] px-[16px] py-[4px] bg-gradient-to-r from-[#0F131B] to-transparent"
+                      className="border cursor-pointer block border-[#5C6B94] px-[16px] py-[4px] bg-gradient-to-r from-[#0F131B] to-transparent"
                     >
+                      {payment && <Khalti price={item[0].attributes.price} />}
                       BUY NOW
-                    </button>
+                    </div>
                   </div>
                 </form>
 

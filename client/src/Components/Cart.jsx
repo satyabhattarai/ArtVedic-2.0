@@ -1,14 +1,17 @@
 import { fetchDataFromApi, removeDataFromApi } from "../API/api";
 
+import Khalti from "./Khalti/Khalti";
 import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useStateContext } from "../ContextProvider/ContextProvider";
 
 const Cart = () => {
   const [cart_id, set_cart_id] = useState([]);
   const [cart_data, set_cart_data] = useState([]);
-
+  const [count, set_count] = useState(null);
+  const { payment, set_payment } = useStateContext();
   useEffect(() => {
     getcartid();
   }, []);
@@ -17,6 +20,11 @@ const Cart = () => {
       fetch_cartItems();
     }
   }, [cart_id]);
+  useEffect(() => {
+    if (cart_data) {
+      countData();
+    }
+  }, [cart_data]);
 
   async function getcartid() {
     try {
@@ -41,10 +49,20 @@ const Cart = () => {
 
       // Wait for all promises to resolve
       let cartDataArray = await Promise.all(promises);
-      set_cart_data(cartDataArray); // Set state with all fetched data
+      set_cart_data(cartDataArray);
+      countData();
     } catch (error) {
       console.error("Error fetching cart items:", error);
     }
+  }
+  async function countData() {
+    set_count(null);
+
+    let total = 0;
+    cart_data.forEach((item) => {
+      total += item[0].attributes.price;
+    });
+    set_count(total);
   }
   async function deletecartItems(id) {
     let res = await fetchDataFromApi(
@@ -100,24 +118,22 @@ const Cart = () => {
                 </div>
               ))
             )}
-            {cart_data.map((index) => console.log(index[0].attributes.artist))};
           </div>
           <div className="text-white">
-            Grand Total
+            Grand Total: {count}
             <span className="text-sm text-white/[0.67] pl-[12px]">
               {/* {grandTotalPrice} */}
             </span>
             <p>
-              {/* {grandTotalPrice > 0 && ( */}
               <button
+                onClick={() => {
+                  set_payment(true);
+                }}
                 className="border px-[16px] py-[4px] text-sm mt-[10px]"
-                // onClick={() => {
-                //   checkout.show({ amount: grandTotalPrice * 100 });
-                // }}
               >
                 COMPLETE ORDER
               </button>
-              {/* )} */}
+              {payment && <Khalti price={count} />}
             </p>
           </div>
         </div>

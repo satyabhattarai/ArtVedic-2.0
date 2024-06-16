@@ -88,7 +88,7 @@ const Home = () => {
         <h3 className="text-[#F7F8F8] ">BROWSE BY CATEGORY</h3>
         <div className=" grid grid-cols-3 gap-8 mt-[16px] mb-[12px] ">
           <div className="relative w-full rounded-sm group">
-            <a href="/category/acrylic">
+            <a href="/category/acrylics">
               <img
                 src="/acrylicbox.jpeg"
                 alt="imagebrowse"
