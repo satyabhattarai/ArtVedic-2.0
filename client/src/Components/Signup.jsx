@@ -2,9 +2,25 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import React, { useState } from "react";
 
 import { postDataToApi } from "../API/api";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const registerImages = [{ id: 1, path: "/CV-Satya.jpeg" }];
+  const Navigate = useNavigate();
+  const registerImages = [
+    { id: 1, path: "/acrylicbox.jpeg" },
+    { id: 1, path: "/featured.jpg" },
+    { id: 1, path: "/flash.jpg" },
+    { id: 1, path: "/home.jpg" },
+    { id: 1, path: "/oil.jpeg" },
+    { id: 1, path: "/portrait.avif" },
+    { id: 1, path: "/ski.jpg" },
+    { id: 1, path: "/water.jpeg" },
+    { id: 1, path: "/Acrylic6.jpeg" },
+    { id: 1, path: "/Acrylic6.jpeg" },
+    { id: 1, path: "/Acrylic7.jpeg" },
+    { id: 1, path: "/Acrylic8.jpeg" },
+    { id: 1, path: "/Acrylic10.jpeg" },
+  ];
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -41,7 +57,7 @@ const Signup = () => {
       let { data } = await postDataToApi("/api/auths", formData, false);
       if (data) {
         alert("account created successfully");
-        window.location.href("/login");
+        Navigate("/login");
       }
     } catch (error) {}
   };
@@ -70,33 +86,33 @@ const Signup = () => {
           </p>
           <label className="block text-white">FULL NAME</label>
           <input
-            className=" mt-[8px] mb-[16px] bg-transparent border border-[#5C6B94] rounded pl-[12px]  py-[8px] pr-[79px]"
+            className="text-white mt-[8px] mb-[16px] bg-transparent border border-[#5C6B94] rounded pl-[12px]  py-[8px] pr-[79px]"
             placeholder="Saibaba Nepal"
             value={name}
             onChange={handleNameChange}
           ></input>
           <label className="block text-white">EMAIL</label>
           <input
-            className=" mt-[8px] mb-[16px] bg-transparent border border-[#5C6B94] rounded pl-[12px]  py-[8px] pr-[79px]"
+            className="text-white mt-[8px] mb-[16px] bg-transparent border border-[#5C6B94] rounded pl-[12px]  py-[8px] pr-[79px]"
             placeholder="test_email@gmail.com"
             value={email}
             onChange={handleEmailChange}
           ></input>
           <label className="block text-white">PASSWORD</label>
           <input
-            className="block  mt-[8px] mb-[16px] bg-transparent border border-[#5C6B94] rounded  pl-[12px] py-[8px] pr-[79px]"
+            className="text-white block  mt-[8px] mb-[16px] bg-transparent border border-[#5C6B94] rounded  pl-[12px] py-[8px] pr-[79px]"
             placeholder=".........."
             value={password}
             onChange={handlePasswordChange}
           ></input>
           <label className="block text-white">CONFIRM PASSWORD</label>
           <input
-            className="block  mt-[8px] mb-[16px] bg-transparent border border-[#5C6B94] rounded  pl-[12px] py-[8px] pr-[79px]"
+            className=" text-white block  mt-[8px] mb-[16px] bg-transparent border border-[#5C6B94] rounded  pl-[12px] py-[8px] pr-[79px]"
             placeholder=".........."
           ></input>
           <label className="block text-white">UPLOAD IMAGE</label>
           <input
-            className="block mt-[8px] mb-[16px] bg-transparent border border-[#5C6B94] rounded pl-[12px] py-[8px] pr-[79px]"
+            className="text-white block mt-[8px] mb-[16px] bg-transparent border border-[#5C6B94] rounded pl-[12px] py-[8px] pr-[79px]"
             type="file"
             onChange={handleImgChange}
           />
@@ -108,7 +124,7 @@ const Signup = () => {
           </button>
           <p className="mt-[32px] text-[#F7F8F8]">
             Already have an account?
-            <a href="/login" className="text-[#B7B9B9] cursor-pointer">
+            <a href="/login" className="text-[#B7B9B9] cursor-pointer ml-2">
               Login
             </a>
           </p>

@@ -4,7 +4,7 @@ import { postDataToApi } from "../API/api";
 
 const Workshopform = () => {
   const [organization, setOrganization] = useState("");
-  const [category, setCaterogy] = useState("Acrylics");
+  const [category, setCaterogy] = useState("acrylics");
   const [description, setDescription] = useState("");
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
@@ -61,7 +61,8 @@ const Workshopform = () => {
 
       let { data } = await postDataToApi("/api/workshops", formData, false);
       if (data) {
-        alert("account created successfully");
+        alert("Flyer Uploaded Successfully");
+        window.location.reload();
       }
     } catch (error) {}
   };
@@ -118,13 +119,13 @@ const Workshopform = () => {
                     value={category}
                     onChange={handleCategoryChange}
                   >
-                    <option value="Acrylic">Acrylics</option>
-                    <option value="Watercolor">Watercolor</option>
-                    <option value="Oil Painting">Oil Painting</option>
-                    <option value="Portrait">Portrait</option>
-                    <option value="Abstract">Abstract</option>
-                    <option value="Glass Art">Glass Art</option>
-                    <option value="Pixel Art">Pixel Art</option>
+                    <option value="acrylics">Acrylics</option>
+                    <option value="watercolor">Watercolor</option>
+                    <option value="oil">Oil Painting</option>
+                    <option value="portrait">Portrait</option>
+                    <option value="abstract">Abstract</option>
+                    <option value="glass">Glass Art</option>
+                    <option value="pixel">Pixel Art</option>
                   </select>
 
                   <label className="text-sm font-bold tracking-wide text-gray-500 ">

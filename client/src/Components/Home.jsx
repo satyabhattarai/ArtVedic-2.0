@@ -67,7 +67,6 @@ const Home = () => {
   console.log(featuredItems);
   return (
     <div className="mt-2">
-
       <div className="grid grid-cols-2 gap-8 py-[48px]">
         <div className=" border border-[#5C6B94] rounded p-[12px]  ">
           <img
@@ -87,29 +86,103 @@ const Home = () => {
       </div>
       <div>
         <h3 className="text-[#F7F8F8] ">BROWSE BY CATEGORY</h3>
-        <div className="grid grid-cols-3 gap-8 pt-[16px] pb-[12px]">
-          <div className="relative w-full rounded-sm aspect-square">
+        <div className=" grid grid-cols-3 gap-8 mt-[16px] mb-[12px] ">
+          <div className="relative w-full rounded-sm group">
             <a href="/category/acrylic">
-              <img src="/acrylicbox.jpeg" alt="imagebrowse" />
+              <img
+                src="/acrylicbox.jpeg"
+                alt="imagebrowse"
+                className="absolute inset-0 object-cover w-full h-full group-hover:opacity-50 "
+              />
             </a>
-            <div className="px-[4px] text-white">
-              <h2 className="pb-[4px]">Acrylic Painting</h2>
+            <div className="px-[4px] text-white opacity-0 group-hover:opacity-100 hover:text-3xl transition-all duration-500 ease-in-out">
+              <h2 className="pb-[4px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+                Acrylics
+              </h2>
             </div>
           </div>
-          <div className="relative aspect-square">
+          <div className="relative w-full rounded-sm group">
+            <a href="/category/portrait">
+              <img
+                src="/ps7.jpeg"
+                className="absolute inset-0 object-cover w-full h-full group-hover:opacity-50 "
+                alt="imagebrowse"
+              />
+            </a>
+            <div className="px-[4px] text-white opacity-0 group-hover:opacity-100 hover:text-3xl transition-all duration-500 ease-in-out">
+              <h2 className="pb-[4px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                Portraits
+              </h2>
+            </div>
+          </div>
+          <div className="relative aspect-square group">
             <a href="/category/oil">
-              <img src="/oil.jpeg" alt="imagebrowse" layout="fill" />
+              <img
+                src="/oil1.jpeg"
+                alt="imagebrowse"
+                className="absolute inset-0 object-cover w-full h-full group-hover:opacity-50"
+              />
             </a>
-            <div className="px-[4px] text-white">
-              <h2 className="pb-[4px]">Oil Painting</h2>
+            <div className="px-[4px] text-white opacity-0 group-hover:opacity-100 hover:text-3xl transition-all duration-500 ease-in-out">
+              <h2 className="pb-[4px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+                Oil Painting
+              </h2>
             </div>
           </div>
-          <div className="relative aspect-square ">
+          <div className="relative aspect-square group">
             <a href="/category/watercolor">
-              <img src="/water.jpeg" alt="imagebrowse" layout="fill" />
+              <img
+                src="/water.jpeg"
+                alt="imagebrowse"
+                className="absolute inset-0 object-cover w-full h-full group-hover:opacity-50"
+              />
             </a>
-            <div className="px-[4px] text-white">
-              <h2 className="pb-[4px]">Watercolor</h2>
+            <div className="px-[4px] text-white opacity-0 group-hover:opacity-100 hover:text-3xl transition-all duration-500 ease-in-out">
+              <h2 className="pb-[4px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+                Watercolor
+              </h2>
+            </div>
+          </div>
+          <div className="relative aspect-square group ">
+            <a href="/category/abstract">
+              <img
+                src="/artvedic17.jpeg"
+                alt="imagebrowse"
+                className="absolute inset-0 object-cover w-full h-full group-hover:opacity-50"
+              />
+            </a>
+            <div className="px-[4px] text-white opacity-0 group-hover:opacity-100 hover:text-3xl transition-all duration-500 ease-in-out">
+              <h2 className="pb-[4px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+                Abstract
+              </h2>
+            </div>
+          </div>
+          <div className="relative aspect-square group">
+            <a href="/category/glass">
+              <img
+                src="/GlassArt9.jpeg"
+                alt="imagebrowse"
+                className="absolute inset-0 object-cover w-full h-full group-hover:opacity-50 "
+              />
+            </a>
+            <div className="px-[4px] text-white opacity-0 group-hover:opacity-100 hover:text-3xl transition-all duration-500 ease-in-out">
+              <h2 className="pb-[4px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+                Glass Art
+              </h2>
+            </div>
+          </div>
+          <div className="relative aspect-square group">
+            <a href="/category/pixel">
+              <img
+                src="pixel.jpeg"
+                alt="imagebrowse"
+                className="absolute inset-0 object-cover w-full h-full group-hover:opacity-50 "
+              />
+            </a>
+            <div className="text-white transition-all duration-500 ease-in-out opacity-0 group-hover:opacity-100 hover:text-3xl ">
+              <h2 className="pb-[4px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                Pixel Art
+              </h2>
             </div>
           </div>
         </div>
@@ -174,9 +247,9 @@ const Home = () => {
             workshop.map((workshop) => (
               <div className="p-4 aspect-square" key={`categoory-${"utsav"}`}>
                 <a href={`/work/${workshop.id}`}>
-                  <div className="">
+                  <div className="h-64">
                     <img
-                      className="w-full h-auto "
+                      className="w-full h-full "
                       src={
                         process.env.REACT_APP_DEV_URL +
                         workshop.attributes.img.data.attributes.url

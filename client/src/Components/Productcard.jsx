@@ -25,12 +25,12 @@ const Productcard = ({ artwork }) => {
             alt="imagebrowse5"
           />
           <div className="px-[4px] text-white">
-            <h2 className="pb-[4px]">{artwork.attributes.artist}</h2>
-            <p className="py-[4px] text-lg">
-              DESC : {artwork.attributes.description}
+            <h2 className="pb-[4px]">{artwork.attributes.title}</h2>
+            <p className=" py-[4px] text-lg line-clamp-2">
+              {artwork.attributes.description}
             </p>
-            <p className="text-xl mb-[10px]">
-              Price: &#8360;{artwork.attributes.price}
+            <p className="text-xl mb-[10px] text-[#ea580c]">
+              &#8360;{artwork.attributes.price}
             </p>
           </div>
         </div>

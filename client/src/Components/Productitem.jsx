@@ -16,9 +16,13 @@ const Productitem = () => {
   const [user_photo, set_user_photo] = useState([]);
   useEffect(() => {
     GetProductItem();
-    Get_user_photo();
     GetReviews();
   }, []);
+  useEffect(() => {
+    if (item && item.length > 0) {
+      Get_user_photo();
+    }
+  }, [item]);
 
   const handleBidChange = (e) => {
     set_bid_amount(e.target.value);
@@ -39,9 +43,7 @@ const Productitem = () => {
   }
   async function Get_user_photo() {
     let res = await fetchDataFromApi(
-      `/api/auths?populate=*&filters[email]=${localStorage.getItem(
-        "USER_EMAIL"
-      )}`
+      `/api/auths?populate=*&filters[email]=${item[0].attributes.email}`
     );
     if (res && res.data.length > 0) {
       set_user_photo(res.data[0].attributes.img.data.attributes.url);
@@ -85,7 +87,7 @@ const Productitem = () => {
     console.log(formData);
     let { data } = await postDataToApi("/api/bids", formData, false);
     if (data) {
-      alert("account created successfully");
+      alert("Bided Successfully");
     }
   };
 
@@ -102,7 +104,7 @@ const Productitem = () => {
     console.log(formData);
     let { data } = await postDataToApi("/api/reviews", formData, false);
     if (data) {
-      alert("account created successfully");
+      alert("Your Review Was Submitted");
     }
   };
 
@@ -112,51 +114,47 @@ const Productitem = () => {
         <>
           <div className="grid grid-cols-2 gap-8 mt-[48px]">
             <div className="bold text-[16px] text-white text-justify ">
-              <div className="grid items-center justify-between grid-cols-2">
-                <p
-                  type="text"
-                  name="artistname"
-                  onClick={() => {
-                    navigate(`/artistprofile/${item[0].attributes.email}`);
-                  }}
-                >
-                  Artist Profile
-                </p>
-                <div className="">
-                  <img
-                    className="object-contain w-32 h-32 rounded-full"
-                    src={process.env.REACT_APP_DEV_URL + user_photo}
-                    alt="artist profile"
-                  />
-                </div>
-                <div
-                  className="mb-[140px] mt-[48px]"
-                  type="text"
-                  name="description"
-                >
-                  <h1 className="mb-5 text-3xl">Description:</h1>{" "}
-                  {item[0].attributes.description}
-                </div>
+              <div
+                className="mb-[120px] mt-[64px]"
+                type="text"
+                name="description"
+              >
+                {item[0].attributes.description}
               </div>
 
               <div className="max-w-[255px]">
-                <div className="flex flex-col justify-between mb-2">
-                  <h5 className="mb-[10px] ">
-                    Name: {item[0].attributes.artist}
-                  </h5>
-                  <div>Price: &#8360; {item[0].attributes.price}</div>
+                <div className="block">
+                  <div className="relative flex-1 group">
+                    <div className="transition-opacity duration-300 ease-in-out opacity-100 group-hover:opacity-50">
+                      <img
+                        className="object-contain w-32 h-32 rounded-full "
+                        src={process.env.REACT_APP_DEV_URL + user_photo}
+                        alt="artist profile"
+                      />
+                    </div>
+                    <p
+                      className="absolute transition-opacity duration-300 -translate-y-4 opacity-0 cursor-pointer group-hover:opacity-100 top-1/2 left-4"
+                      type="text"
+                      name="artistname"
+                      onClick={() => {
+                        navigate(`/artistprofile/${item[0].attributes.email}`);
+                      }}
+                    >
+                      Artist Profile
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between mb-[24px]">
-                  <span className="">Email: {item[0].attributes.email}</span>
-                </div>
-                <div className="block width-[100%] mb-[24px]">
-                  <span className="">
-                    Published At: {item[0].attributes.publishedAt}
-                  </span>
+                <div className="flex items-center justify-between mb-[24px] ">
+                  <div>
+                    <h5 className="">{item[0].attributes.artist}</h5>
+                  </div>
+                  <div className="text-red-600">
+                    &#8360; {item[0].attributes.price}
+                  </div>
                 </div>
 
                 <form onSubmit={handle_bid_data}>
-                  <div className="text-black mb-[12px]">
+                  <div className="text-black mb-[12px] mt-8 ">
                     <h3 className="text-white mb-[8px]">Bid The Artwork</h3>
                     <input
                       className=" text-center text-[#5C6B94] bg-transparent border border-[#5C6B94] py-[2px] px-[8px] "
@@ -176,19 +174,19 @@ const Productitem = () => {
                     >
                       BID NOW
                     </button>
+                    <button
+                      onClick={() => {
+                        if (!localStorage.getItem("USER_EMAIL")) {
+                          alert("login first");
+                        } else {
+                        }
+                      }}
+                      className="border block border-[#5C6B94] px-[16px] py-[4px] bg-gradient-to-r from-[#0F131B] to-transparent"
+                    >
+                      BUY NOW
+                    </button>
                   </div>
                 </form>
-                <button
-                  onClick={() => {
-                    if (!localStorage.getItem("USER_EMAIL")) {
-                      alert("login first");
-                    } else {
-                    }
-                  }}
-                  className="border block border-[#5C6B94] px-[16px] py-[4px] bg-gradient-to-r from-[#0F131B] to-transparent"
-                >
-                  BUY NOW
-                </button>
 
                 <button
                   onClick={() => {
@@ -210,27 +208,42 @@ const Productitem = () => {
                 width={627}
                 height={727}
               />
+              <div className="flex justify-between mt-2 text-gray-500 ">
+                By: {item[0].attributes.email}
+                <p className="text-gray-400">
+                  On: {item[0].attributes.publishedAt}
+                </p>{" "}
+              </div>
             </div>
           </div>
           <form onSubmit={handle_review_data} className="mt-[76px]">
             <h5 className="text-white mb-[18px]">GIVE REVIEWS</h5>
-            <input
-              type="text"
-              className="w-[1092px] h-[125px] pl-[12px] pt-[4px] bg-transparent border border-[#5C6B94] text-[#5C6B94]"
-              placeholder="Leave a Review"
-              value={review}
-              onChange={handleReviewChange}
-            />
-            <input type="submit" placeholder="submit" />
+            <div>
+              <input
+                type="text"
+                className="w-[1092px] h-[100px] pl-[12px] pt-[4px] bg-transparent border border-[#5C6B94] text-[#5C6B94]"
+                placeholder="Leave a Review"
+                value={review}
+                onChange={handleReviewChange}
+              />
+              <button
+                className="px-2 py-1 mt-4 text-white border border-opacity-15"
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
           </form>
           <div className="mt-4 text-white">REVIEWS</div>
           {fetch_review &&
             fetch_review.length > 0 &&
             fetch_review.map((item) => (
-              <div className="mt-2 text-black bg-slate-50">
-                <h2>Message: {item.attributes.review_words}</h2>
-                <h3>Email of reviewer: {item.attributes.reviewer_email}</h3>
-                <h3>Name of reviewer: {item.attributes.reviewer_name}</h3>
+              <div className="p-8 mt-2 text-white bg-black bg-opacity-30">
+                <h4> {item.attributes.reviewer_name}</h4>
+                <div className="flex justify-between mt-2">
+                  <h2>{item.attributes.review_words}</h2>
+                  <h4>From {item.attributes.reviewer_email}</h4>
+                </div>
                 {console.log(item.attributes.review_words)}
               </div>
             ))}

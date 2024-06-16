@@ -35,13 +35,13 @@
     "category": {
       "type": "enumeration",
       "enum": [
-        "Acrylics",
-        "Watercolor",
-        "Oil Painting",
-        "Portrait",
-        "Abstract",
-        "Glass Art",
-        "Pixel Art"
+        "acrylics",
+        "watercolor",
+        "oil",
+        "portrait",
+        "abstract",
+        "glass",
+        "pixel"
       ]
     },
     "bid_by_name": {

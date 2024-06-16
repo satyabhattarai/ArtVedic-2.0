@@ -4,7 +4,21 @@ import React from "react";
 import { fetchDataFromApi } from "../API/api";
 import { useState } from "react";
 
-const loginImages = [{ id: 1, path: "/CV-Satya.jpeg" }];
+const loginImages = [
+  { id: 1, path: "/acrylicbox.jpeg" },
+  { id: 1, path: "/featured.jpg" },
+  { id: 1, path: "/flash.jpg" },
+  { id: 1, path: "/home.jpg" },
+  { id: 1, path: "/oil.jpeg" },
+  { id: 1, path: "/portrait.avif" },
+  { id: 1, path: "/ski.jpg" },
+  { id: 1, path: "/water.jpeg" },
+  { id: 1, path: "/Acrylic6.jpeg" },
+  { id: 1, path: "/Acrylic6.jpeg" },
+  { id: 1, path: "/Acrylic7.jpeg" },
+  { id: 1, path: "/Acrylic8.jpeg" },
+  { id: 1, path: "/Acrylic10.jpeg" },
+];
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -91,7 +105,7 @@ const Login = () => {
           </a>
           <p className="mt-[32px] text-[#F7F8F8]">
             Donot have an account?
-            <a href="/signup" className="text-[#B7B9B9] cursor-pointer">
+            <a href="/signup" className="text-[#B7B9B9] cursor-pointer ml-2">
               Get Started
             </a>
           </p>
@@ -108,9 +122,6 @@ const Login = () => {
                     className="w-full h-auto"
                     src={img.path}
                     alt="imagebrowse5"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
                   />
                 );
               })}

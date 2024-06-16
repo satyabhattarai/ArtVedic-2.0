@@ -54,7 +54,7 @@ const CommissionForm = () => {
 
       let { data } = await postDataToApi("/api/commissions", formData, false);
       if (data) {
-        alert("account created successfully");
+        alert("Hire Request Sent");
       }
     } catch (error) {}
 
@@ -154,7 +154,7 @@ const CommissionForm = () => {
                         </svg>
                         <p className="text-gray-500 pointer-none ">
                           <span className="text-sm text-blue-500 underline ">
-                            CHOOSE YOUR WORKSHOP FLYER HERE.
+                            CHOOSE THE REFERENCE IMAGE.
                           </span>
                         </p>
                         <input

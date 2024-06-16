@@ -4,6 +4,7 @@ import { postDataToApi } from "../API/api";
 
 const Uploadform = () => {
   const [title, setTitle] = useState("");
+  const [location, setLocation] = useState("");
   const [category, setCaterogy] = useState("Acrylics");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -25,6 +26,9 @@ const Uploadform = () => {
   const handlePriceChange = (e) => {
     setPrice(e.target.value);
   };
+  const handleLocationChange = (e) => {
+    setLocation(e.target.value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,11 +45,13 @@ const Uploadform = () => {
         description: description,
         price: price,
         img: imageId,
+        location: location,
       };
 
       let { data } = await postDataToApi("/api/alls", formData, false);
       if (data) {
-        alert("account created successfully");
+        alert("Your Artwork is submitted.");
+        window.location.reload();
       }
     } catch (error) {}
   };
@@ -92,15 +98,15 @@ const Uploadform = () => {
                     value={category}
                     onChange={handleCategoryChange}
                   >
-                    <option value="Acrylics" selected>
+                    <option value="acrylics" selected>
                       Acrylics
                     </option>
-                    <option value="Watercolor">Watercolor</option>
-                    <option value="Oil Painting">Oil Painting</option>
-                    <option value="Portrait">Portrait</option>
-                    <option value="Abstract">Abstract</option>
-                    <option value="Glass Art">Glass Art</option>
-                    <option value="Pixel Art">Pixel Art</option>
+                    <option value="watercolor">Watercolor</option>
+                    <option value="oil">Oil Painting</option>
+                    <option value="portrait">Portrait</option>
+                    <option value="abstract">Abstract</option>
+                    <option value="glass">Glass Art</option>
+                    <option value="pixel">Pixel Art</option>
                   </select>
                   <label className="text-sm font-bold tracking-wide text-gray-500">
                     Description
@@ -118,11 +124,22 @@ const Uploadform = () => {
                   </label>
                   <input
                     className="p-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                    type="text"
+                    type="number"
                     placeholder="Set Price"
                     name="price"
                     value={price}
                     onChange={handlePriceChange}
+                  />
+                  <label className="text-sm font-bold tracking-wide text-gray-500">
+                    Location
+                  </label>
+                  <input
+                    className="p-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
+                    type="text"
+                    placeholder="location"
+                    name="price"
+                    value={location}
+                    onChange={handleLocationChange}
                   />
                 </div>
                 <div className="grid grid-cols-1 space-y-2">
@@ -155,7 +172,7 @@ const Uploadform = () => {
                           type="file"
                           name="img"
                           onChange={handleImgChange}
-                          className="justify-center mt-4 text-center text-gray-500"
+                          className="justify-center hidden mt-4 text-center text-gray-500"
                         />
                       </div>
                     </label>

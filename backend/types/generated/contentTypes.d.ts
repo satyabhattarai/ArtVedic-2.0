@@ -805,13 +805,13 @@ export interface ApiAllAll extends Schema.CollectionType {
     artist: Attribute.String;
     category: Attribute.Enumeration<
       [
-        'Acrylics',
-        'Watercolor',
-        'Oil Painting',
-        'Portrait',
-        'Abstract',
-        'Glass Art',
-        'Pixel Art'
+        'acrylics',
+        'watercolor',
+        'oil',
+        'portrait',
+        'abstract',
+        'glass',
+        'pixel'
       ]
     >;
     img: Attribute.Media<'images'>;
@@ -873,13 +873,13 @@ export interface ApiBidBid extends Schema.CollectionType {
     title: Attribute.String;
     category: Attribute.Enumeration<
       [
-        'Acrylics',
-        'Watercolor',
-        'Oil Painting',
-        'Portrait',
-        'Abstract',
-        'Glass Art',
-        'Pixel Art'
+        'acrylics',
+        'watercolor',
+        'oil',
+        'portrait',
+        'abstract',
+        'glass',
+        'pixel'
       ]
     >;
     bid_by_name: Attribute.String;
@@ -1041,13 +1041,13 @@ export interface ApiWorkshopWorkshop extends Schema.CollectionType {
     description: Attribute.String;
     category: Attribute.Enumeration<
       [
-        'Acrylics',
-        'Watercolor',
-        'Oil Painting',
-        'Portrait',
-        'Abstract',
-        'Glass Art',
-        'Pixel Art'
+        'acrylics',
+        'watercolor',
+        'oil',
+        'portrait',
+        'abstract',
+        'glass',
+        'pixel'
       ]
     >;
     time: Attribute.String;

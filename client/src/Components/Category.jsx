@@ -19,7 +19,6 @@ const Category = () => {
   console.log(type);
   return (
     <div>
-      {" "}
       <h1 className="mt-12 text-white uppercase">{type} Art</h1>
       <div className="grid grid-cols-3 gap-4 mt-16">
         {category.map((cat) => (
