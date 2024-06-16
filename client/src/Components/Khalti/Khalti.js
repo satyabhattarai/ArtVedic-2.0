@@ -12,14 +12,15 @@ const Khalti = ({ price }) => {
       <div className="flex relative items-center justify-center bg-white rounded-xl p-[200px]">
         <div
           onClick={() => {
+            window.location.reload();
             set_payment(false);
           }}
-          className="absolute top-0 right-0 p-6 text-black"
+          className="absolute top-0 right-0 p-6 text-black cursor-pointer cursor"
         >
           <IoMdCloseCircle size={30} />
         </div>
         <div
-          className="text-white p-4 rounded-[100px] bg-[#2D055C]"
+          className="text-white p-4 rounded-[100px] cursor-pointer	 bg-[#2D055C]"
           onClick={() => {
             checkout.show({ amount: price * 100 });
           }}

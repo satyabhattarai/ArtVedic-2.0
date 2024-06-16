@@ -1,6 +1,7 @@
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { useEffect, useState } from "react";
 
+import ImageModal from "../ContextProvider/ImageModal";
 import React from "react";
 import { fetchDataFromApi } from "../API/api";
 
@@ -46,6 +47,10 @@ const Gallery = () => {
   if (featuredItems && featuredItems.length > 0) {
     console.log(featuredItems[0].attributes.img.data.attributes.url);
   }
+
+  const openInNewTab = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
   return (
     <div className="mt-8 ">
       {featuredItems && featuredItems.length > 0 && (
@@ -104,10 +109,17 @@ const Gallery = () => {
               <Masonry gutter="24px">
                 {featuredItems.map((art) => (
                   <img
+                    onClick={() => {
+                      openInNewTab(
+                        process.env.REACT_APP_DEV_URL +
+                          art.attributes.img.data.attributes.url
+                      );
+                    }}
                     src={
                       process.env.REACT_APP_DEV_URL +
                       art.attributes.img.data.attributes.url
                     }
+                    className="cursor-pointer"
                     alt="satya"
                     sizes="100vw"
                   />

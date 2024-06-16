@@ -131,7 +131,12 @@ const Productitem = () => {
               <div className="max-w-[255px]">
                 <div className="block">
                   <div className="relative flex-1 group">
-                    <div className="transition-opacity duration-300 ease-in-out opacity-100 group-hover:opacity-50">
+                    <div
+                      onClick={() => {
+                        navigate(`/artistprofile/${item[0].attributes.email}`);
+                      }}
+                      className="transition-opacity duration-300 ease-in-out opacity-100 cursor-pointer group-hover:opacity-50"
+                    >
                       <img
                         className="object-contain w-32 h-32 rounded-full "
                         src={process.env.REACT_APP_DEV_URL + user_photo}

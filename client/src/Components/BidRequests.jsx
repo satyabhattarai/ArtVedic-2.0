@@ -28,7 +28,7 @@ const BidRequests = () => {
     console.log(formData);
     let { data } = await postDataToApi("/api/bids", formData, false);
     if (data) {
-      alert("account created successfully");
+      alert("Bid recorded successfully");
     }
 
     let result = await removeDataFromApi(`/api/bids/` + item.id);

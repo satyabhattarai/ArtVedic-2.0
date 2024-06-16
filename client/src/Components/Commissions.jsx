@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-
-import { MdZoomIn } from "react-icons/md";
 import { fetchDataFromApi, removeDataFromApi } from "../API/api";
+
+import ImageModal from "../ContextProvider/ImageModal";
+import { MdZoomIn } from "react-icons/md";
+
 const Commissions = () => {
+  const openInNewTab = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
   const [commissions, set_commissions] = useState();
   useEffect(() => {
     GetCommissionRequests();
@@ -45,6 +50,12 @@ const Commissions = () => {
                   <td className="p-4">
                     <div className="flex gap-4">
                       <img
+                        onClick={() => {
+                          openInNewTab(
+                            process.env.REACT_APP_DEV_URL +
+                              item.attributes.reference.data.attributes.url
+                          );
+                        }}
                         src={
                           process.env.REACT_APP_DEV_URL +
                           item.attributes.reference.data.attributes.url
